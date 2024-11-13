@@ -1,0 +1,12 @@
+{
+   "/Odometry": "/mapping/odometry",
+   "/cloud_colored": "/cloud_colored",
+   "/rtk/nmea": "/rtk/nmea",
+   "/camera/left": "/camera/left/preview",
+   "/camera/right": "/camera/right/preview",
+   "/camera/left/jpeg_1k": "/camera/left/jpeg",
+   "/camera/right/jpeg_1k": "/camera/right/jpeg",
+   "/rtk/update_account": "/rtk/update_account",
+   "/record_node/start": "/start",
+   "/record_node/stop": "/stop"
+}
