@@ -58,14 +58,11 @@ def create_extrinsic_matrix(rotation, position):
     return R, T
 
 # k：相机内参矩阵intrinsic（fl_x、fl_y为焦距信息，cx、cy为主点信息）
-def image_to_camera(pixel_coords, depth, k_inv):
+def pixel_to_camera(pixel_coords, depth, k_inv):
     pixel_homogeneous = np.array([pixel_coords[0], pixel_coords[1], 1])
-
     # 将像素坐标转换为相机坐标系中的齐次坐标 (X_c, Y_c, Z_c)
     camera_coords_homogeneous = np.dot(k_inv, pixel_homogeneous) * depth
-
     return camera_coords_homogeneous
-
 
 def camera_to_world(camera_coords, R, T):
     # 世界坐标系中的坐标 = R * 相机坐标系坐标 + T
@@ -82,13 +79,13 @@ def pixel_to_world(pixel_coords, depth, K, R, T):
     :param depth: 深度值 z_p
     :param K: 相机内参矩阵 (3x3)
     :param R: 旋转矩阵 (3x3)
-    :param t: 平移向量 (3x1)
+    :param T: 平移向量 (3x1)
     :return: 世界坐标系中的坐标 (X_w, Y_w, Z_w)
     """
     # 计算相机内参矩阵的逆矩阵
     K_inv = np.linalg.inv(K)
     # 从像素坐标转换到相机坐标系
-    camera_coords = image_to_camera(pixel_coords, depth, K_inv)
+    camera_coords = pixel_to_camera(pixel_coords, depth, K_inv)
     # 从相机坐标系转换到世界坐标系
     world_coords = camera_to_world(camera_coords, R, T)
     return world_coords
