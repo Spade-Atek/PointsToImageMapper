@@ -1,6 +1,5 @@
 # encoding: utf-8
 # @File  : splitcamera.py
-# @Author: XIE Yutai
 # @Date  : 2025/04/01/20:37
 
 import cv2
